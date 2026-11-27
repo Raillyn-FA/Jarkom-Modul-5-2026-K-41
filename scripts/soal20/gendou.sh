@@ -1,5 +1,5 @@
 #!/bin/sh
-# /root/soal20_gendou.sh -- SOAL 20: uji kebakaran (Gendou). Pakai: simpan | hapus | pulih | hitung
+# SOAL 20: uji kebakaran (Gendou). Pakai: simpan | hapus | pulih | hitung
 [ "$(id -u)" = 0 ] || { echo "Harus root"; exit 1; }
 NAMA=gendou
 case "$1" in
@@ -12,7 +12,6 @@ case "$1" in
       iptables -t $t -X 2>/dev/null
     done
     iptables -P INPUT ACCEPT; iptables -P FORWARD ACCEPT; iptables -P OUTPUT ACCEPT
-    # Hapus rute statis yang kita tambahkan (soal 3). Rute langsung (proto kernel) dan default route
     # dari DHCP NAT1 dibiarkan, supaya Gendou tidak kehilangan koneksinya ke NAT1.
     ip route show | while read -r baris; do
       case "$baris" in
